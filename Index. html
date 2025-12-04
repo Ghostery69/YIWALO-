@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loukman Service - VPN, Streaming et Marketing Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles généraux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #ff6600;
+            --primary-dark: #e55d00;
+            --secondary: #1a1a2e;
+            --accent: #00a8ff;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --gold: #ffd700;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+        }
+        
+        /* En-tête */
+        header {
+            background: linear-gradient(135deg, var(--secondary), #16213e);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            margin-right: 12px;
+            font-size: 36px;
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Section héros */
+        .hero {
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(22, 33, 62, 0.9)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, #f5f5f5);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .welcome-badge {
+            display: inline-block;
+            background: rgba(255, 102, 0, 0.2);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            backdrop-filter: blur(5px);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 102, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0); }
+        }
+        
+        /* Section produits */
+        .products {
+            padding: 100px 0;
+            background: var(--light);
+            position: relative;
+        }
+        
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .product-badge.gold {
+            background: var(--gold);
+            color: #333;
+        }
+        
+        .product-image {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 30px;
+        }
+        
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            margin-bottom: 25px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .add-to-cart i {
+            margin-right: 10px;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+        }
+        
+        /* Panier */
+        .cart {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+            transition: right 0.5s ease;
+            z-index: 1000;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .close-cart:hover {
+            color: var(--primary);
+        }
+        
+        .cart-items {
+            flex-grow: 1;
+            margin-bottom: 25px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-info h4 {
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-align: right;
+            margin-bottom: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: var(--secondary);
+        }
+        
+        .checkout-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .checkout-btn i {
+            margin-right: 12px;
+        }
+        
+        .checkout-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+        }
+        
+        .cart-icon {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: var(--primary);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.5);
+            z-index: 999;
+            transition: all 0.4s ease;
+            font-size: 1.5rem;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff3300;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Section avantages */
+        .features {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--secondary), #16213e);
+            color: white;
+            position: relative;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 40px 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        /* Section témoignages */
+        .testimonials {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .testimonial-card {
+            background: var(--light);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .testimonial-text::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -15px;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .author-info h4 {
+            margin-bottom: 8px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .author-info p {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Pied de page */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .footer-column p {
+            margin-bottom: 25px;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 12px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 8px 15px;
+            }
+            
+            .hero {
+                height: 80vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cart {
+                width: 350px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .products-grid, .testimonials-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                height: 70vh;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cart {
+                width: 100%;
+            }
+            
+            .cart-icon {
+                width: 70px;
+                height: 70px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    Loukman Service
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#produits">Produits</a></li>
+                        <li><a href="#temoignages">Témoignages</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section héros -->
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <div class="welcome-badge">
+                <i class="fas fa-star"></i> Bienvenue chez Loukman Service
+            </div>
+            <h1>Services Numériques Premium pour l'Afrique</h1>
+            <p>VPN Orange, VPN Moov, Canal+ À Vie, Netflix et comptes TikTok monétisés. Des solutions fiables et abordables pour tous vos besoins numériques.</p>
+            <a href="#produits" class="btn">Découvrir nos services <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Section produits -->
+    <section class="products" id="produits">
+        <div class="container">
+            <h2 class="section-title">Nos Produits</h2>
+            <div class="products-grid">
+                <!-- Produit 1 -->
+                <div class="product-card">
+                    <div class="product-badge">Populaire</div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="VPN Orange" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">VPN Orange </h3>
+                        <div class="product-price">1semaine 500 FCFA
+1mois 1500 FCFA
+illimité 3500 FCFA</div>
+                        <p class="product-description">Accédez à des contenus géo-restreints avec notre VPN Orange sécurisé et rapide. Compatible avec tous vos appareils.</p>
+                        <button class="add-to-cart" data-id="1" data-name="VPN Orange Money" data-price="5000">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Produit 2 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="VPN Moov" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">VPN Moov </h3>
+                        <div class="product-price">1 semaine 500 FCFA
+1mois 1500 FCFA
+illimité 3000 FCFA</div>
+                        <p class="product-description">Profitez d'une connexion sécurisée avec notre VPN Moov optimisé pour l'Afrique. Installation facile et assistance incluse.</p>
+                        <button class="add-to-cart" data-id="2" data-name="VPN Moov Money" data-price="4500">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Produit 3 -->
+                <div class="product-card">
+                    <div class="product-badge gold">Exclusif</div>
+                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Canal+ à vie" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Canal+ À Vie</h3>
+                        <div class="product-price">7000f</div>
+                        <p class="product-description">Accès permanent à Canal+ sans renouvellement. Profitez de tous les contenus premium une fois pour toutes!</p>
+                        <button class="add-to-cart" data-id="6" data-name="Canal+ À Vie" data-price="35000">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Produit 4 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Netflix" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Compte Netflix Premium</h3>
+                        <div class="product-price">A seulement 2000 FCFA</div>
+                        <p class="product-description">Profitez de Netflix Premium avec notre compte partagé sécurisé. Ultra HD, 4 écrans simultanés, aucune limitation.</p>
+                        <button class="add-to-cart" data-id="4" data-name="Compte Netflix Premium" data-price="8000">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Produit 5 -->
+                <div class="product-card">
+                    <div class="product-badge">Gain Garanti</div>
+                    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="TikTok Monétisé" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">TikTok Monétisé</h3>
+                        <div class="product-price">2000FCFA</div>
+                        <p class="product-description">Compte TikTok déjà monétisé avec historique de paiements. Commencez à gagner dès aujourd'hui!</p>
+                        <button class="add-to-cart" data-id="5" data-name="TikTok Monétisé" data-price="25000">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section avantages -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Pourquoi Nous Choisir?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Service Rapide</h3>
+                    <p>Activation immédiate après paiement. Pas d'attente inutile.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support 24/7</h3>
+                    <p>Notre équipe est disponible pour vous aider à tout moment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sécurité Garantie</h3>
+                    <p>Tous nos services sont sécurisés et anonymes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Paiement Local</h3>
+                    <p>Orange Money, Moov Money et Wave acceptés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section témoignages -->
+    <section class="testimonials" id="temoignages">
+        <div class="container">
+            <h2 class="section-title">Témoignages de Nos Clients</h2>
+            <div class="testimonials-grid">
+                <!-- Témoignage 1 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">J'ai acheté le VPN Orange et je suis très satisfait. La connexion est stable et rapide. Je recommande Loukman Service!</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1540569876033-6e5d046a1d77?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Client" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Jean Kaboré</h4>
+                            <p>Ouagadougou, Burkina Faso</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Témoignage 2 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Le compte Netflix fonctionne parfaitement. J'ai accès à tous les films et séries. Service rapide et fiable.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616c113a1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Client" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Aïcha Traoré</h4>
+                            <p>Abidjan, Côte d'Ivoire</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Témoignage 3 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Mon compte TikTok a été monétisé en moins d'une semaine grâce à Loukman Service. Je commence déjà à gagner de l'argent!</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Client" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Mohamed Koné</h4>
+                            <p>Bobo-Dioulasso, Burkina Faso</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Témoignage 4 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-text">J'utilise le VPN Moov depuis 3 mois sans problème. Je peux maintenant accéder à tous les sites que je veux.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Client" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Fatou Diarra</h4>
+                            <p>Bouaké, Côte d'Ivoire</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panier -->
+    <div class="cart">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items">
+            <!-- Les articles du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-total">Total: 0 FCFA</div>
+        <button class="checkout-btn">
+            <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+        </button>
+    </div>
+
+    <!-- Icône du panier -->
+    <div class="cart-icon">
+        <span>🛒</span>
+        <span class="cart-count">0</span>
+    </div>
+
+    <!-- Pied de page -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Loukman Service</h3>
+                    <p>Votre partenaire de confiance pour les services numériques en Afrique de l'Ouest. Qualité, rapidité et sécurité garanties.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><iclass="fab fa-wattsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Nos Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> VPN Orange Money</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> VPN Moov Money</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Canal+ À Vie</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Comptes Netflix</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> TikTok Monétisé</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-envelope"></i> bassoleloukman@gmail.com </a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +226 06 11 47 97</a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp"></i> +226 52 83  91 61</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Koudougou, Burkina Faso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Loukman Service. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestion du panier
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.querySelector('.cart-icon');
+            const cart = document.querySelector('.cart');
+            const closeCart = document.querySelector('.close-cart');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartItems = document.querySelector('.cart-items');
+            const cartTotal = document.querySelector('.cart-total');
+            const cartCount = document.querySelector('.cart-count');
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            
+            let cartProducts = [];
+            
+            // Ouvrir/fermer le panier
+            cartIcon.addEventListener('click', () => {
+                cart.classList.add('active');
+            });
+            
+            closeCart.addEventListener('click', () => {
+                cart.classList.remove('active');
+            });
+            
+            // Ajouter un produit au panier
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.dataset.id;
+                    const name = button.dataset.name;
+                    const price = parseInt(button.dataset.price);
+                    
+                    // Vérifier si le produit est déjà dans le panier
+                    const existingProduct = cartProducts.find(product => product.id === id);
+                    
+                    if (existingProduct) {
+                        existingProduct.quantity += 1;
+                    } else {
+                        cartProducts.push({
+                            id,
+                            name,
+                            price,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    cart.classList.add('active');
+                    
+                    // Animation du bouton
+                    button.innerHTML = '<i class="fas fa-check"></i> Ajouté!';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-cart-plus"></i> Ajouter au panier';
+                    }, 1500);
+                });
+            });
+            
+            // Mettre à jour le panier
+            function updateCart() {
+                cartItems.innerHTML = '';
+                let total = 0;
+                let count = 0;
+                
+                if (cartProducts.length === 0) {
+                    cartItems.innerHTML = '<p style="text-align: center; color: #777;">Votre panier est vide</p>';
+                } else {
+                    cartProducts.forEach(product => {
+                        const productTotal = product.price * product.quantity;
+                        total += productTotal;
+                        count += product.quantity;
+                        
+                        const cartItem = document.createElement('div');
+                        cartItem.classList.add('cart-item');
+                        cartItem.innerHTML = `
+                            <div class="cart-item-info">
+                                <h4>${product.name}</h4>
+                                <div class="cart-item-price">${product.price} FCFA x ${product.quantity}</div>
+                            </div>
+                            <div>${productTotal} FCFA</div>
+                        `;
+                        
+                        cartItems.appendChild(cartItem);
+                    });
+                }
+                
+                cartTotal.textContent = `Total: ${total} FCFA`;
+                cartCount.textContent = count;
+            }
+            
+            // Passer la commande
+            checkoutBtn.addEventListener('click', () => {
+                if (cartProducts.length === 0) {
+                    alert('Votre panier est vide!');
+                    return;
+                }
+                
+                let message = 'Bonjour Loukman Service, je souhaite commander les produits suivants:\n\n';
+                let total = 0;
+                
+                cartProducts.forEach(product => {
+                    const productTotal = product.price * product.quantity;
+                    total += productTotal;
+                    message += `- ${product.name} (x${product.quantity}): ${productTotal} FCFA\n`;
+                });
+                
+                message += `\nTotal: ${total} FCFA\n\nMerci de me contacter pour finaliser la commande.`;
+                
+                // Encoder le message pour WhatsApp
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/22652839161?text=${encodedMessage}`;
+                
+                // Ouvrir WhatsApp
+                window.open(whatsappURL, '_blank');
+                
+                // Vider le panier après commande
+                cartProducts = [];
+                updateCart();
+                cart.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
